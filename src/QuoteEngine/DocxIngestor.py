@@ -13,14 +13,12 @@ class DocxIngestor(IngestorInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
             raise Exception('cannot ingest exception')
-
         try:
             quotes = []
             path = path.replace('./', '')
             root = os.path.dirname(os.path.dirname(__file__))
             path = os.path.join(root, path).replace('\\', '/')
             doc = docx.Document(path)
-
             for para in doc.paragraphs:
                 if para.text != "":
                     parse = para.text.split(' - ')
@@ -28,5 +26,4 @@ class DocxIngestor(IngestorInterface):
                     quotes.append(new_quote)
         except Exception as e:
             raise Exception(".docx parsing issue occurred.")
-        print(quotes)
         return quotes
