@@ -16,11 +16,8 @@ class MemeEngine:
 
     def make_meme(self, img_path, text, author, width=500) -> str:
         try:
-            print(img_path)
-            print(self.output_dir)
             output_path = f"./static/meme_{random.randint(0, 255)}.jpg"
             save_path = os.path.join(self.output_dir, output_path.replace('./static/', ''))
-            print(output_path)
             img = Image.open(img_path)
             scale = width/img.size[1]
             resized_img = img.resize((width, int(scale*img.size[0])))
