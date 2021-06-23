@@ -53,7 +53,6 @@ def meme_rand():
     # Use the random python standard library class to:
     # 1. select a random image from imgs array
     # 2. select a random quote from the quotes array
-
     img = random.choice(imgs)
     quote = random.choice(quotes)
     path = meme.make_meme(img, quote.body, quote.author)
@@ -76,7 +75,6 @@ def meme_post():
     # 2. Use the meme object to generate a meme using this temp
     #    file and the body and author form parameters.
     # 3. Remove the temporary saved image.
-
     img_url = request.form.get('image_url')
     body = request.form.get('body')
     author = request.form.get('author')
@@ -85,7 +83,6 @@ def meme_post():
     root = os.path.dirname(__file__)
     tmp = os.path.join(root, tmp).replace('\\', '/')
     data = requests.get(img_url, stream=True).content
-    print(tmp)
     with open(tmp, 'wb') as output_img:
         output_img.write(data)
     path = meme.make_meme(tmp, body, author)
