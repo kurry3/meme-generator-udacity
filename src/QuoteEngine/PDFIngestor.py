@@ -12,15 +12,12 @@ class PDFIngestor(IngestorInterface):
         if not cls.can_ingest(path):
             raise Exception('cannot ingest exception')
         try:
-
             path = path.replace('./', '')
             root = os.path.dirname(os.path.dirname(__file__))
             path = os.path.join(root, path).replace('\\', '/')
-            print(path)
             tmp = f'_data/DogQuotes/{random.randint(0, 250)}.txt'
             root = os.path.dirname(os.path.dirname(__file__))
             tmp = os.path.join(root, tmp).replace('\\', '/')
-            print(tmp)
 
             call = subprocess.call(['pdftotext', path, tmp])
             quotes = []
