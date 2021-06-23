@@ -3,13 +3,7 @@ The goal of this project is to build a "meme generator" – a multimedia applica
 
 Setting Up This Yourself
 
-Import the following libraries:
-- Pillow==8.2.0
-- Flask==2.0.1
-- numpy==1.21.0
-- pandas==1.2.5
-- requests==2.25.1
-- docx==0.2.4
+Install the packages listed in requirements.txt
 
 Download and install the pdftotext tool: https://www.xpdfreader.com/download.html
 
