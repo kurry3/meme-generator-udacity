@@ -1,6 +1,6 @@
 class QuoteModel:
     author = None
-    line = None
+    body = None
 
     def __init__(self, body, author):
         self.body = body
