@@ -17,12 +17,11 @@ class TextIngestor(IngestorInterface):
         try:
             with open(mod_path, 'r', encoding='utf-8-sig') as f:
                 for line in f:
-                    one_line = line.strip('\n').replace(u"\u2019", "'").split(' - ')
+                    one_line = line.strip('\n').replace(u"\u2019",
+                                                        "'").split(' - ')
                     print(one_line)
                     new_quote = QuoteModel(one_line[0], one_line[1])
                     quotes.append(new_quote)
         except Exception as e:
             raise Exception(".txt parsing issue occurred.")
         return quotes
-
-
