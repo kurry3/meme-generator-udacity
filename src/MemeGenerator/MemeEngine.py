@@ -12,7 +12,6 @@ class MemeEngine:
         output_dir = os.path.join(root, output_dir+'/').replace('\\', '/')
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)
-        print(output_dir)
         self.output_dir = output_dir
 
     def make_meme(self, img_path, text, author, width=500) -> str:
