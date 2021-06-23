@@ -17,7 +17,8 @@ class CSVIngestor(IngestorInterface):
             path = os.path.join(root, path).replace('\\', '/')
             input_file = pandas.read_csv(path)
             for i, row in input_file.iterrows():
-                new_quote = QuoteModel(row['body'].replace(u"\u2019", "'"), row['author'])
+                new_quote = QuoteModel(row['body'].replace(u"\u2019",
+                                                           "'"), row['author'])
                 quotes.append(new_quote)
         except Exception as e:
             raise Exception(".csv parsing issue occurred.")
