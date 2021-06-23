@@ -21,7 +21,6 @@ class CSVIngestor(IngestorInterface):
                 quotes.append(new_quote)
         except Exception as e:
             raise Exception(".csv parsing issue occurred.")
-        print(quotes)
         return quotes
 
 
