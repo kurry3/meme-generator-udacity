@@ -24,7 +24,8 @@ class PDFIngestor(IngestorInterface):
             quotes = []
             with open(tmp, "r") as f:
                 for line in f.readlines():
-                    one_line = line.strip('\n').replace(u"\u2019", "'").split(' - ')
+                    one_line = line.strip('\n').replace(u"\u2019",
+                                                        "'").split(' - ')
                     new_quote = QuoteModel(one_line[0], one_line[1])
                     quotes.append(new_quote)
             os.remove(tmp)
