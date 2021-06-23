@@ -1,35 +1,31 @@
-import os
-import subprocess
-import random
 from typing import List
+import docx
+import os
+
 from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
 
-class PDFIngestor(IngestorInterface):
+class DocxIngestor(IngestorInterface):
+    allowed_extensions = ['docx']
+
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
             raise Exception('cannot ingest exception')
-        try:
 
+        try:
+            quotes = []
             path = path.replace('./', '')
             root = os.path.dirname(os.path.dirname(__file__))
             path = os.path.join(root, path).replace('\\', '/')
-            tmp = f'_data/DogQuotes/{random.randint(0, 250)}.txt'
-            root = os.path.dirname(os.path.dirname(__file__))
-            tmp = os.path.join(root, tmp).replace('\\', '/')
+            doc = docx.Document(path)
 
-            call = subprocess.call(['pdftotext', path, tmp])
-            quotes = []
-            with open(tmp, "r") as f:
-                for line in f.readlines():
-                    one_line = line.strip('\n').replace(u"\u2019",
-                                                        "'").split(' - ')
-                    new_quote = QuoteModel(one_line[0], one_line[1])
+            for para in doc.paragraphs:
+                if para.text != "":
+                    parse = para.text.replace(u"\u2019", "'").split(' - ')
+                    new_quote = QuoteModel(parse[0], parse[1])
                     quotes.append(new_quote)
-            os.remove(tmp)
         except Exception as e:
-            raise Exception(".pdf parsing issue occurred.")
-
+            raise Exception(".docx parsing issue occurred.")
         return quotes
