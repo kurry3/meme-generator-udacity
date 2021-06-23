@@ -7,8 +7,6 @@ from .QuoteModel import QuoteModel
 
 
 class DocxIngestor(IngestorInterface):
-    allowed_extensions = ['docx']
-
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
