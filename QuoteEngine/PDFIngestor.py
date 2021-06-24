@@ -23,7 +23,7 @@ class PDFIngestor(IngestorInterface):
             call = subprocess.call(['pdftotext', path, tmp])
             quotes = []
             with open(tmp, "r") as f:
-                for line in f.readlines():
+                for line in f:
                     one_line = line.strip('\n').replace(u"\u2019",
                                                         "'").split(' - ')
                     new_quote = QuoteModel(one_line[0], one_line[1])
