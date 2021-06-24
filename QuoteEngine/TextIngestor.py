@@ -19,7 +19,6 @@ class TextIngestor(IngestorInterface):
                 for line in f:
                     one_line = line.strip('\n').replace(u"\u2019",
                                                         "'").split(' - ')
-                    print(one_line)
                     new_quote = QuoteModel(one_line[0], one_line[1])
                     quotes.append(new_quote)
         except Exception as e:
